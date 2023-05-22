@@ -57,7 +57,7 @@ const Checkout = () => {
     });
 
   return (
-    <div className="w-full flex flex-col md:flex-row pt-16 md:pt-20 lg:pt-28 px-6 lg:px-10">
+    <div className="w-full flex flex-col md:flex-row py-16 md:py-20 lg:py-28 px-6 lg:px-10">
       <div className="w-full md:w-1/2">
         <h1 className="font-bold my-5 text-2xl text-center">CHECKOUT</h1>
         <form onSubmit={handleSubmit} className="flex flex-col">
