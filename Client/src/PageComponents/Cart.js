@@ -49,7 +49,7 @@ const Cart = ({ data }) => {
               ))}
             </div>
           </div>
-          <div className="fixed bottom-0 w-full flex justify-end p-2.5 md:p-6 text-xs bg-white/95">
+          <div className="fixed bottom-0 w-full flex justify-end p-3.5 md:p-6 text-xs bg-white/95">
             <span className="font-bold">TOTAL</span>
             <span className="font-bold  mx-3.5 sm:mx-6 md:mx-10">
               {Math.round(handleTotal() * 100) / 100} EUR

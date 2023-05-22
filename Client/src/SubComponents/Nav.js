@@ -298,7 +298,7 @@ function Nav(props) {
             </li>
           </ul>
         </section>
-        <div className="flex justify-between absolute bottom-[6%] border-t border-black w-100 left-0 p-4 text-small md:hidden">
+        <div className="flex justify-between fixed bottom-0 border-t border-black w-100 left-0 p-4 text-small md:hidden">
           <Link
             to="/"
             className="text-black"
@@ -306,7 +306,11 @@ function Nav(props) {
           >
             HOME
           </Link>
-          <Link to={userData ? "/account" : "/login"} className="text-black">
+          <Link
+            to={userData ? "/account" : "/login"}
+            className="text-black"
+            onClick={() => setSidebar("0 invisible")}
+          >
             MY ACCOUNT
           </Link>
         </div>

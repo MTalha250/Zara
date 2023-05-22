@@ -2,7 +2,7 @@ import React from "react";
 
 const Men = ({ data }) => {
   return (
-    <div className="snap-y snap-proximity h-screen w-screen overflow-scroll relative scrollbar-none text-cyan-700">
+    <div className="snap-y snap-proximity h-screen w-screen overflow-scroll relative scrollbar-none text-black">
       {data
         .filter((d) => {
           return d.category === "men";
@@ -24,7 +24,7 @@ const Men = ({ data }) => {
               alt="abc"
               className="h-full w-full object-cover"
             />
-            <p className="absolute z-50 right-5 bottom-10 font-bold text-sm">
+            <p className="w-full text-end absolute z-40 p-10 bottom-0 font-bold text-sm">
               {d.name}
             </p>
           </div>
@@ -51,7 +51,7 @@ const Men = ({ data }) => {
               alt="abc"
               className="h-full w-full object-cover"
             />
-            <p className="absolute z-50 right-5 bottom-10 font-bold text-sm">
+            <p className="w-full text-end absolute z-40 bottom-0 font-bold text-sm p-10">
               {d.name}
             </p>
           </div>
@@ -77,7 +77,7 @@ const Men = ({ data }) => {
               alt="abc"
               className="h-full w-full object-cover"
             />
-            <p className="absolute z-50 right-5 bottom-10 font-bold text-sm">
+            <p className="w-full text-end absolute z-40 bottom-0 font-bold text-sm p-10">
               {d.name}
             </p>
           </div>
