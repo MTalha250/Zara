@@ -3,7 +3,7 @@ function Footer() {
   return (
     <div
       id="footer"
-      className="w-full flex flex-col items-center justify-center px-10"
+      className="w-full flex flex-col items-center justify-center px-10 h-screen"
     >
       <p className="my-3 font-bold text-gray-500">JOIN OUR NEWSLETTER</p>
       <p className="my-3 flex flex-wrap justify-center items-center">
