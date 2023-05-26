@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 
 function Main({ data }) {
   const [btns, setBtns] = useState(0);
+  const [scrollbar, setScrollbar] = useState(0);
   const [small, setSmall] = useState("");
   const [medium, setMedium] = useState("");
   const [large, setLarge] = useState("");
@@ -16,16 +17,14 @@ function Main({ data }) {
   const navigate = useNavigate();
   let i = 0;
   const scroll = useRef();
-  const scrollBar = useRef();
-  let j = data?.imgs.length - 1;
-
-  const handleScroll = () => {
-    scrollBar.current.scrollTop =
-      (scrollBar.current.clientHeight / data?.imgs.length) * j;
-  };
 
   useEffect(() => {
-    handleScroll();
+    scroll.current.scrollTop = 0;
+    setScrollbar(
+      Math.round(
+        (scroll.current.clientHeight / scroll.current.scrollHeight) * 100
+      )
+    );
   }, [data]);
 
   const handleAddToBag = () => {
@@ -113,6 +112,15 @@ function Main({ data }) {
         <div
           ref={scroll}
           className="snap-y snap-mandatory h-full w-full md:w-10/12 overflow-scroll scrollbar-none scroll-smooth"
+          onScroll={() => {
+            setScrollbar(
+              Math.round(
+                ((scroll.current.clientHeight + scroll.current.scrollTop) /
+                  scroll.current.scrollHeight) *
+                  100
+              )
+            );
+          }}
         >
           {data?.imgs.map((img, i) => (
             <img
@@ -123,16 +131,11 @@ function Main({ data }) {
             />
           ))}
         </div>
-        <div
-          ref={scrollBar}
-          className="hidden md:block absolute w-0.5 h-full top-0 right-[10%] overflow-hidden scroll-smooth"
-        >
+        <div className="hidden md:block absolute w-[1.5px] h-full top-0 right-[10%]">
+          <div className="w-full bg-gray-300 h-full absolute"></div>
           <div
-            className={`w-full bg-black transition duration-500 h-full`}
-          ></div>
-          <div
-            className={`w-full bg-gray-300 transition duration-500 h-full`}
-          ></div>
+            className={`w-full bg-black h-full absolute origin-top scale-y-[${scrollbar}%]`}
+          />
         </div>
         <div
           className={
@@ -148,8 +151,6 @@ function Main({ data }) {
               className="cursor-pointer w-full object-cover mb-1"
               onClick={() => {
                 scroll.current.scrollTop = scroll.current.clientHeight * i;
-                j = data?.imgs.length - 1 - i;
-                handleScroll();
               }}
             />
           ))}
