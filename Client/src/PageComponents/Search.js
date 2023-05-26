@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 function Search(props) {
   const location = useLocation();
   const [recent, setRecent] = useState([]);
-  const [women, setWomen] = useState(
-    "font-bold relative before:absolute before:w-3 before:h-0.5 before:bg-black before:top-full before:left-1/2 before:-translate-x-2/4"
-  );
-  const [man, setMan] = useState("");
-  const [kids, setKids] = useState("");
+
+  useEffect(() => {
+    let existingData = localStorage.getItem("recent");
+    if (existingData) setRecent(JSON.parse(existingData));
+  }, []);
+
   return (
     <div>
       <div className="pt-20 md:pt-32 px-6">
@@ -54,7 +55,11 @@ function Search(props) {
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               if (!recent.includes(props.input.toUpperCase())) {
-                setRecent((r) => [...r, props.input.toUpperCase()]);
+                setRecent([...recent, props.input.toUpperCase()]);
+                localStorage.setItem(
+                  "recent",
+                  JSON.stringify([...recent, props.input.toUpperCase()])
+                );
               }
             }
           }}
@@ -65,7 +70,13 @@ function Search(props) {
           recent.length != 0 ? (
             <div className="w-full flex justify-between my-3 text-xs">
               <span className="font-bold">RECENT</span>
-              <span className="cursor-pointer" onClick={() => setRecent([])}>
+              <span
+                className="cursor-pointer"
+                onClick={() => {
+                  setRecent([]);
+                  localStorage.removeItem("recent");
+                }}
+              >
                 CLEAR
               </span>
             </div>
@@ -83,11 +94,11 @@ function Search(props) {
               >
                 {item}
                 <CloseIcon
-                  id={i}
                   className="cursor-pointer font-light text-gray-500 scale-75 absolute top-0 right-0"
                   onClick={(e) => {
-                    recent.splice(e.target.id, 1);
+                    recent.splice(i, 1);
                     setRecent([...recent]);
+                    localStorage.setItem("recent", JSON.stringify([...recent]));
                   }}
                 />
               </button>

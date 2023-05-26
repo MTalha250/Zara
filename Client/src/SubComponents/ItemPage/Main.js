@@ -126,7 +126,7 @@ function Main({ data }) {
             <img
               src={process.env.REACT_APP_PATH + img}
               alt=""
-              className="snap-always snap-start w-full h-full object-cover object-top"
+              className="snap-always snap-start w-full h-full"
               key={i}
             />
           ))}
@@ -139,7 +139,7 @@ function Main({ data }) {
         </div>
         <div
           className={
-            "hidden md:block absolute transition duration-500 top-0 right-0 w-[6%] opacity-" +
+            "hidden md:block absolute transition duration-500 top-0 right-0 w-[7%] opacity-" +
             btns
           }
         >
@@ -148,7 +148,7 @@ function Main({ data }) {
               src={process.env.REACT_APP_PATH + img}
               alt=""
               key={i}
-              className="cursor-pointer w-full object-cover mb-1"
+              className="cursor-pointer w-full mb-1"
               onClick={() => {
                 scroll.current.scrollTop = scroll.current.clientHeight * i;
               }}
@@ -156,13 +156,15 @@ function Main({ data }) {
           ))}
         </div>
       </div>
-      <div className="px-4 md:px-0 w-full md:w-5/12 lg:w-4/12 text-[11px]">
-        <div className="w-full h-0.5 flex justify-center md:hidden my-3 mb-5">
+      <div className="px-3.5 w-full md:w-5/12 lg:w-4/12 text-[11px]">
+        <div className="w-full h-0.5 flex justify-center md:hidden my-3.5 mb-8">
           <div className="bg-black w-1/12"></div>
         </div>
-        <p className="my-1 text-[16px] font-light">{data?.name}</p>
-        <p className="font-bold text-sm">{data?.price} EUR</p>
-        <p className="text-[13px] font-light w-10/12 my-4">
+        <p className="my-1 text-xs md:text-[16px] font-light leading-6 tracking-wide">
+          {data?.name}
+        </p>
+        <p className="font-bold text-xs md:text-sm">{data?.price} EUR</p>
+        <p className="text-xs md:text-[13px] font-light w-10/12 my-4">
           {data?.description}
         </p>
         <div className="border-y border-black flex flex-col items-start w-10/12">
