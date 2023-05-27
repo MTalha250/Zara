@@ -14,15 +14,16 @@ const Men = ({ data }) => {
             key={i}
           >
             <img
-              src={
-                window.innerWidth < 418
-                  ? process.env.REACT_APP_PATH + d.imgs[1]
-                  : window.innerWidth > 417 && window.innerWidth < 810
-                  ? process.env.REACT_APP_PATH + d.imgs[0]
-                  : process.env.REACT_APP_PATH + d.imgs[2]
-              }
-              alt="abc"
-              className="h-full w-full object-cover"
+              src={process.env.REACT_APP_PATH + d.imgs[1]}
+              className="sm:hidden h-full w-full"
+            />
+            <img
+              src={process.env.REACT_APP_PATH + d.imgs[0]}
+              className="hidden sm:block md:hidden h-full w-full"
+            />
+            <img
+              src={process.env.REACT_APP_PATH + d.imgs[2]}
+              className="hidden md:block h-full w-full"
             />
             <p className="w-full text-end absolute z-40 p-10 bottom-0 font-bold text-sm">
               {d.name}
@@ -43,13 +44,15 @@ const Men = ({ data }) => {
               autoPlay
               loop
               muted
-              src={
-                window.innerWidth < 810
-                  ? process.env.REACT_APP_PATH + d.imgs[0]
-                  : process.env.REACT_APP_PATH + d.imgs[1]
-              }
-              alt="abc"
-              className="h-full w-full object-cover"
+              src={process.env.REACT_APP_PATH + d.imgs[0]}
+              className="md:hidden h-full w-full object-cover"
+            />
+            <video
+              autoPlay
+              loop
+              muted
+              src={process.env.REACT_APP_PATH + d.imgs[1]}
+              className="hidden md:block h-full w-full object-cover"
             />
             <p className="w-full text-end absolute z-40 bottom-0 font-bold text-sm p-10">
               {d.name}
@@ -67,15 +70,16 @@ const Men = ({ data }) => {
             key={i}
           >
             <img
-              src={
-                window.innerWidth < 418
-                  ? process.env.REACT_APP_PATH + d.imgs[1]
-                  : window.innerWidth > 417 && window.innerWidth < 810
-                  ? process.env.REACT_APP_PATH + d.imgs[0]
-                  : process.env.REACT_APP_PATH + d.imgs[2]
-              }
-              alt="abc"
-              className="h-full w-full object-cover"
+              src={process.env.REACT_APP_PATH + d.imgs[1]}
+              className="sm:hidden h-full w-full"
+            />
+            <img
+              src={process.env.REACT_APP_PATH + d.imgs[0]}
+              className="hidden sm:block md:hidden h-full w-full"
+            />
+            <img
+              src={process.env.REACT_APP_PATH + d.imgs[2]}
+              className="hidden md:block h-full w-full"
             />
             <p className="w-full text-end absolute z-40 bottom-0 font-bold text-sm p-10">
               {d.name}

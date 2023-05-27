@@ -160,32 +160,19 @@ function Main({ data }) {
         <div className="w-full h-0.5 flex justify-center md:hidden my-3.5 mb-8">
           <div className="bg-black w-1/12"></div>
         </div>
-        <p className="my-1 text-xs md:text-[16px] font-light leading-6 tracking-wide">
+        <p className="my-1 text-xs md:text-[16px] font-light leading-6">
           {data?.name}
         </p>
         <p className="font-bold text-xs md:text-sm">{data?.price} EUR</p>
-        <p className="text-xs md:text-[13px] font-light w-10/12 my-4">
+        <p className="text-[13px] font-light md:w-10/12 my-4">
           {data?.description}
         </p>
-        <div className="border-y border-black flex flex-col items-start w-10/12">
+        <div className="border-y border-black flex flex-col items-start md:w-10/12">
           <p
             className={
-              "m-0 text-xs hover:bg-gray-200 w-full font-light " + small
+              "flex flex-col items-center md:items-start m-0 text-xs hover:bg-gray-200 w-full font-light " +
+              small
             }
-            onClick={() => {
-              if (i === 0) {
-                setMedium("hidden");
-                setLarge("hidden");
-                setXlarge("hidden");
-                i = 1;
-              } else {
-                setSmall("");
-                setMedium("");
-                setLarge("");
-                setXlarge("");
-                i = 0;
-              }
-            }}
           >
             <input
               type="radio"
@@ -197,29 +184,30 @@ function Main({ data }) {
             />
             <label
               htmlFor="small"
-              className="peer-checked:font-bold cursor-pointer block w-full py-1"
+              className="peer-checked:font-bold cursor-pointer md:w-full block py-1.5"
+              onClick={() => {
+                if (i === 0) {
+                  setMedium("hidden");
+                  setLarge("hidden");
+                  setXlarge("hidden");
+                  i = 1;
+                } else {
+                  setSmall("");
+                  setMedium("");
+                  setLarge("");
+                  setXlarge("");
+                  i = 0;
+                }
+              }}
             >
               EU S / US S
             </label>
           </p>
           <p
             className={
-              "m-0 text-xs hover:bg-gray-200 w-full font-light " + medium
+              "flex flex-col items-center md:items-start m-0 text-xs hover:bg-gray-200 w-full font-light " +
+              medium
             }
-            onClick={() => {
-              if (i === 0) {
-                setSmall("hidden");
-                setLarge("hidden");
-                setXlarge("hidden");
-                i = 1;
-              } else {
-                setSmall("");
-                setMedium("");
-                setLarge("");
-                setXlarge("");
-                i = 0;
-              }
-            }}
           >
             <input
               type="radio"
@@ -231,7 +219,21 @@ function Main({ data }) {
             />
             <label
               htmlFor="medium"
-              className="peer-checked:font-bold cursor-pointer block w-full py-1"
+              className="peer-checked:font-bold cursor-pointer md:w-full block py-1.5"
+              onClick={() => {
+                if (i === 0) {
+                  setSmall("hidden");
+                  setLarge("hidden");
+                  setXlarge("hidden");
+                  i = 1;
+                } else {
+                  setSmall("");
+                  setMedium("");
+                  setLarge("");
+                  setXlarge("");
+                  i = 0;
+                }
+              }}
             >
               EU M / US M
             </label>
@@ -239,22 +241,9 @@ function Main({ data }) {
 
           <p
             className={
-              "m-0 text-xs hover:bg-gray-200 w-full font-light " + large
+              "flex flex-col items-center md:items-start m-0 text-xs hover:bg-gray-200 w-full font-light " +
+              large
             }
-            onClick={() => {
-              if (i === 0) {
-                setSmall("hidden");
-                setMedium("hidden");
-                setXlarge("hidden");
-                i = 1;
-              } else {
-                setSmall("");
-                setMedium("");
-                setLarge("");
-                setXlarge("");
-                i = 0;
-              }
-            }}
           >
             <input
               type="radio"
@@ -266,30 +255,30 @@ function Main({ data }) {
             />
             <label
               htmlFor="large"
-              className="peer-checked:font-bold cursor-pointer block w-full py-1"
+              className="peer-checked:font-bold cursor-pointer md:w-full block py-1.5"
+              onClick={() => {
+                if (i === 0) {
+                  setSmall("hidden");
+                  setMedium("hidden");
+                  setXlarge("hidden");
+                  i = 1;
+                } else {
+                  setSmall("");
+                  setMedium("");
+                  setLarge("");
+                  setXlarge("");
+                  i = 0;
+                }
+              }}
             >
               EU L / US L
             </label>
           </p>
           <p
             className={
-              "m-0 text-xs hover:bg-gray-200 w-full font-light " + xlarge
+              "flex flex-col items-center md:items-start m-0 text-xs hover:bg-gray-200 w-full font-light " +
+              xlarge
             }
-            onClick={() => {
-              if (i === 0) {
-                setSmall("hidden");
-                setMedium("hidden");
-                setLarge("hidden");
-                setXlarge("");
-                i = 1;
-              } else {
-                setSmall("");
-                setMedium("");
-                setLarge("");
-                setXlarge("");
-                i = 0;
-              }
-            }}
           >
             <input
               type="radio"
@@ -301,7 +290,22 @@ function Main({ data }) {
             />
             <label
               htmlFor="xlarge"
-              className="peer-checked:font-bold cursor-pointer block w-full py-1"
+              className="peer-checked:font-bold cursor-pointer md:w-full block py-1.5"
+              onClick={() => {
+                if (i === 0) {
+                  setSmall("hidden");
+                  setMedium("hidden");
+                  setLarge("hidden");
+                  setXlarge("");
+                  i = 1;
+                } else {
+                  setSmall("");
+                  setMedium("");
+                  setLarge("");
+                  setXlarge("");
+                  i = 0;
+                }
+              }}
             >
               EU XL / US XL
             </label>
