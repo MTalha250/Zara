@@ -193,6 +193,7 @@ const Account = () => {
             ?.filter((d) => {
               return d.email === userData.email;
             })
+            .reverse()
             .map((d, i) => (
               <div key={i}>
                 {d.order.map((c, i) => (
@@ -213,11 +214,7 @@ const Account = () => {
                         SIZE: {c.size}
                       </p>
                       <p className="text-xs md:text-sm my-1.5">
-                        DATE:{" "}
-                        {dateFormat(
-                          d.created_at,
-                          "mmmm dS, yyyy"
-                        ).toUpperCase()}
+                        DATE: {dateFormat(d.created_at, "mmmm dS, yyyy")}
                       </p>
                     </div>
                     <div className="flex flex-col justify-between font-bold text-xs md:text-sm">
