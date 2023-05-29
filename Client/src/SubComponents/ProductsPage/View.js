@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Item from "../Item";
+import { DataContext } from "../../Context/DataContext";
 
-const View = ({ data, filter }) => {
+const View = ({ filter }) => {
+  const [data, setData] = useContext(DataContext);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

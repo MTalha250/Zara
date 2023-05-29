@@ -1,7 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Item from "../Item";
-const Collection = ({ data, view, filter }) => {
+import { DataContext } from "../../Context/DataContext";
+
+const Collection = ({ data, filter }) => {
+  const [view, setView] = useContext(DataContext);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

@@ -1,11 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import CartItem from "../SubComponents/Cart/CartItem";
 import { CartContext } from "../Context/CartContext";
+import { DataContext } from "../Context/DataContext";
 import CItem from "../SubComponents/CItem";
 import WebAssetOffIcon from "@mui/icons-material/WebAssetOff";
 import { Link } from "react-router-dom";
-const Cart = ({ data }) => {
+const Cart = () => {
   const [cartData, setCartData] = useContext(CartContext);
+  const [data, setData] = useContext(DataContext);
 
   useEffect(() => {
     window.scrollTo(0, 0);

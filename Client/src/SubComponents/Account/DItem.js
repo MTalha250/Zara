@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
 const DItem = (props) => {
+  const [stock, setStock] = useState(props.stock);
+
   const handleDelete = async (id) => {
     const response = await axios.delete(
       process.env.REACT_APP_PATH + `product/delete/${id}`
@@ -11,7 +13,6 @@ const DItem = (props) => {
     toast(response.data.message);
     window.location.reload();
   };
-  const handleUpdate = async (id) => {};
 
   return (
     <div className="text-[10px] sm:text-xs font-light">
@@ -40,7 +41,18 @@ const DItem = (props) => {
         </div>
         <p className="my-1.5 truncate">{props.name}</p>
       </Link>
-      <p className="w-full my-1.5">{props.price} EUR</p>
+      <div className="flex justify-between w-full">
+        <div className="my-1.5 ">{props.price} EUR</div>
+        <label className="my-1.5">
+          STOCK:
+          <input
+            type="number"
+            className="outline-none w-8"
+            value={stock}
+            onChange={(e) => setStock(e.target.value)}
+          />
+        </label>
+      </div>
       <div className=" mt-2.5 flex w-full justify-between items-center">
         <Link
           to={`../updateproduct/${props.id}`}

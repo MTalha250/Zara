@@ -9,6 +9,7 @@ module.exports = {
         price: req.body.price,
         description: req.body.description,
         category: req.body.category,
+        stock: req.body.stock,
       })
       .then(() => {
         res.send({ message: "Item Inserted Successfully" });
@@ -40,6 +41,7 @@ module.exports = {
         price: req.body.price,
         description: req.body.description,
         category: req.body.category,
+        stock: req.body.stock,
       })
       .then(() => {
         res.send({ message: "Product Updated" });

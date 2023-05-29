@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Main from "../SubComponents/ItemPage/Main";
 import Grid from "../SubComponents/ItemPage/Grid";
+import { DataContext } from "../Context/DataContext";
+const ItemPage = () => {
+  const [data, setData] = useContext(DataContext);
 
-const ItemPage = ({ data }) => {
   const params = useParams();
   const itemData = data?.filter((d) => d._id === params.id)[0];
 

@@ -25,23 +25,19 @@ import Checkout from "./PageComponents/Checkout";
 import ErrorPage from "./PageComponents/ErrorPage";
 import { UserContext } from "./Context/UserContext";
 import { CartContext } from "./Context/CartContext";
+import { DataContext } from "./Context/DataContext";
 import AddProduct from "./SubComponents/Account/AddProduct";
 import UpdateProduct from "./SubComponents/Account/UpdateProduct";
 import jwt_decode from "jwt-decode";
 const App = () => {
   const [index, setIndex] = useState(0);
-  const [data, setData] = useState([]);
+  const [data, setData] = useContext(DataContext);
   const [collection, setCollection] = useState([]);
   const [input, setInput] = useState("");
   const [userData, setUserData] = useContext(UserContext);
   const [cartData, setCartData] = useContext(CartContext);
-
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get(
-        process.env.REACT_APP_PATH + "product/products"
-      );
-      setData(response.data);
       const cresponse = await axios.get(
         process.env.REACT_APP_PATH + "collection/collection"
       );
@@ -78,33 +74,27 @@ const App = () => {
             element={<Home index={index} getIndex={handleIndex} />}
           />
           <Route path="/men" element={<ProductsPage />}>
-            <Route path="view" element={<View data={data} filter="men" />} />
+            <Route path="view" element={<View filter="men" />} />
             <Route
               path=""
-              element={
-                <Collection data={collection} view={data} filter="men" />
-              }
+              element={<Collection data={collection} filter="men" />}
             />
           </Route>
           <Route path="/women" element={<ProductsPage />}>
-            <Route path="view" element={<View data={data} filter="women" />} />
+            <Route path="view" element={<View filter="women" />} />
             <Route
               path=""
-              element={
-                <Collection data={collection} view={data} filter="women" />
-              }
+              element={<Collection data={collection} filter="women" />}
             />
           </Route>
           <Route path="/kids" element={<ProductsPage />}>
-            <Route path="view" element={<View data={data} filter="kids" />} />
+            <Route path="view" element={<View filter="kids" />} />
             <Route
               path=""
-              element={
-                <Collection data={collection} view={data} filter="kids" />
-              }
+              element={<Collection data={collection} filter="kids" />}
             />
           </Route>
-          <Route path="/product/:id" element={<ItemPage data={data} />} />
+          <Route path="/product/:id" element={<ItemPage />} />
           <Route
             path="/search"
             element={<Search input={input} getInput={handleInput} />}
@@ -143,7 +133,7 @@ const App = () => {
               }
             />
           </Route>
-          <Route path="/cart" element={<Cart data={data} />} />
+          <Route path="/cart" element={<Cart />} />
           {userData && cartData.length > 0 && (
             <Route path="/checkout" element={<Checkout />} />
           )}
@@ -154,12 +144,12 @@ const App = () => {
               <Route path="" element={<Account />} />
               {userData?.type === "admin" || userData?.type === "moderator" ? (
                 <Route path="dashboard" element={<Dashboard />}>
-                  <Route path="" element={<Statistics data={data} />} />
+                  <Route path="" element={<Statistics />} />
                   {userData?.type === "admin" && (
                     <Route path="users" element={<Users />} />
                   )}
                   {userData?.type === "admin" && (
-                    <Route path="products" element={<Products data={data} />} />
+                    <Route path="products" element={<Products />} />
                   )}
                   <Route path="orders" element={<Orders />} />
                   {userData?.type === "admin" && (
@@ -168,7 +158,7 @@ const App = () => {
                   {userData?.type === "admin" && (
                     <Route
                       path="updateproduct/:id"
-                      element={<UpdateProduct data={data} />}
+                      element={<UpdateProduct />}
                     />
                   )}
                 </Route>

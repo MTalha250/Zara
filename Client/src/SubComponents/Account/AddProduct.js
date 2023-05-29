@@ -9,6 +9,7 @@ const AddProduct = () => {
     price: "",
     description: "",
     category: "",
+    stock: "",
   });
 
   const handleChange = (e) => {
@@ -42,6 +43,7 @@ const AddProduct = () => {
     formData.append("price", data.price);
     formData.append("description", data.description);
     formData.append("category", data.category);
+    formData.append("stock", data.stock);
     const response = await axios.post(
       process.env.REACT_APP_PATH + "product/addProduct",
       formData
@@ -54,6 +56,7 @@ const AddProduct = () => {
       price: "",
       description: "",
       category: "",
+      stock: "",
     });
   };
 
@@ -88,18 +91,36 @@ const AddProduct = () => {
           value={data.name}
           onChange={handleChange}
         />
-        <label htmlFor="price" className="font-bold  mt-6">
-          Price :
-        </label>
-        <input
-          type="number"
-          name="price"
-          id="price"
-          className="border-b outline-none border-black p-1 text-sm w-full text-gray-500"
-          placeholder="Item Price"
-          value={data.price}
-          onChange={handleChange}
-        />
+        <div className="flex justify-between">
+          <div className="w-[48%]">
+            <label htmlFor="price" className="font-bold  mt-6">
+              Price :
+            </label>
+            <input
+              type="number"
+              name="price"
+              id="price"
+              className="border-b outline-none border-black p-1 text-sm w-full text-gray-500"
+              placeholder="Item Price"
+              value={data.price}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="w-[48%]">
+            <label htmlFor="price" className="font-bold mt-6">
+              Stock :
+            </label>
+            <input
+              type="number"
+              name="stock"
+              id="stock"
+              className="border-b outline-none border-black p-1 text-sm w-full text-gray-500"
+              placeholder="Items in stock"
+              value={data.stock}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
 
         <label htmlFor="description" className="font-bold  mt-6">
           Description :

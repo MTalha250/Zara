@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import DItem from "./DItem";
-const Products = ({ data }) => {
+import { DataContext } from "../../Context/DataContext";
+const Products = () => {
   const [filter, setFilter] = useState("women");
+  const [data, setData] = useContext(DataContext);
   return (
     <div className="p-6 lg:p-10">
       <h1 className="text-center text-3xl font-bold">All Products</h1>
@@ -76,6 +78,7 @@ const Products = ({ data }) => {
               name={d.name}
               price={d.price}
               description={d.description}
+              stock={d.stock}
             />
           ))}
       </div>

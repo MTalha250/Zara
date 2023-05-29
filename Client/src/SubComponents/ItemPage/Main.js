@@ -312,12 +312,18 @@ function Main({ data }) {
           </p>
         </div>
         <p className="my-2 text-xs font-light">SIZE GUIDE</p>
-        <button
-          className="border-y border-x border-black  my-3 py-2 px-16 text-xs hover:border-gray-300"
-          onClick={handleAddToBag}
-        >
-          ADD TO BAG
-        </button>
+        {data.stock > 0 ? (
+          <button
+            className="border-y border-x border-black  my-3 py-2 px-16 text-xs hover:border-gray-300"
+            onClick={handleAddToBag}
+          >
+            ADD TO BAG
+          </button>
+        ) : (
+          <button className="border-y border-x my-3 py-2 px-16 text-xs text-gray-400 border-gray-400">
+            OUT OF STOCK
+          </button>
+        )}
         <p>SHIPPING AND RETURNS</p>
       </div>
     </div>

@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { DataContext } from "../../Context/DataContext";
 
-const UpdateProduct = (props) => {
+const UpdateProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
-  const item = props.data?.filter((d) => {
+  const [allData, setAllData] = useContext(DataContext);
+
+  const item = allData?.filter((d) => {
     return d._id === params.id;
   });
 

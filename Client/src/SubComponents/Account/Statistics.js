@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { DataContext } from "../../Context/DataContext";
 import axios from "axios";
-const Statistics = (props) => {
+const Statistics = () => {
   const [users, setUsers] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [data, setData] = useContext(DataContext);
 
   useEffect(() => {
     async function getData() {
@@ -29,7 +31,7 @@ const Statistics = (props) => {
         </div>
         <div className="shrink-0 shadow w-[48%] sm:w-[30%] border  py-3.5 md:py-6 text-center bg-[#b6b6b6] rounded-3xl text-white text-xl">
           <p className="font-bold">Products</p>
-          <p className="font-bold">{props.data?.length}</p>
+          <p className="font-bold">{data?.length}</p>
         </div>
       </div>
       <div className="flex flex-col sm:flex-row">
