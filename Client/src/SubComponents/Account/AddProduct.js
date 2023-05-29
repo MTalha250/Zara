@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { DataContext } from "../../Context/DataContext";
 
 const AddProduct = () => {
+  const [allData, setAllData] = useContext(DataContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [data, setData] = useState({
     imgs: [],
     name: "",
@@ -34,7 +41,6 @@ const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
     const formData = new FormData();
     for (let i = 0; i < data.imgs.length; i++) {
       formData.append("imgs", data.imgs[i]);
@@ -48,8 +54,8 @@ const AddProduct = () => {
       process.env.REACT_APP_PATH + "product/addProduct",
       formData
     );
+    setAllData([...allData, data]);
     toast(response.data.message);
-
     setData({
       imgs: [],
       name: "",
@@ -58,6 +64,7 @@ const AddProduct = () => {
       category: "",
       stock: "",
     });
+    window.location.reload();
   };
 
   return (

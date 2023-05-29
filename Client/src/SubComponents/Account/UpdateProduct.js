@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
@@ -9,16 +9,21 @@ const UpdateProduct = () => {
   const params = useParams();
   const [allData, setAllData] = useContext(DataContext);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const item = allData?.filter((d) => {
     return d._id === params.id;
   });
-
+  console.log(item);
   const [data, setData] = useState({
     imgs: [],
     name: item[0].name,
     price: item[0].price,
     description: item[0].description,
     category: item[0].category,
+    stock: item[0].stock,
   });
 
   const handleChange = (e) => {
@@ -55,6 +60,9 @@ const UpdateProduct = () => {
       process.env.REACT_APP_PATH + `product/update/${item[0]._id}`,
       formData
     );
+    const index = allData.findIndex((d) => d._id === item[0]._id);
+    allData[index] = data;
+    setAllData([...allData]);
     toast(response.data.message);
     navigate("../products");
     window.location.reload();

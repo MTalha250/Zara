@@ -2,16 +2,19 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-
+import { DataContext } from "../../Context/DataContext";
 const DItem = (props) => {
   const [stock, setStock] = useState(props.stock);
+  const [data, setData] = useContext(DataContext);
 
   const handleDelete = async (id) => {
     const response = await axios.delete(
       process.env.REACT_APP_PATH + `product/delete/${id}`
     );
+    const index = data.findIndex((d) => d._id === id);
+    data.splice(index, 1);
+    setData([...data]);
     toast(response.data.message);
-    window.location.reload();
   };
 
   return (
