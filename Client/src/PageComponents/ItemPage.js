@@ -6,9 +6,10 @@ import Grid from "../SubComponents/ItemPage/Grid";
 const ItemPage = ({ data }) => {
   const params = useParams();
   const itemData = data?.filter((d) => d._id === params.id)[0];
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, [itemData]);
 
   return (
     <div>

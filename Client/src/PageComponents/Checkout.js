@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
 import { CartContext } from "../Context/CartContext";
 import * as Yup from "yup";
@@ -19,6 +19,10 @@ const Checkout = () => {
   const [userData, setUserData] = useContext(UserContext);
   const [cartData, setCartData] = useContext(CartContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleTotal = () => {
     let total = 0;

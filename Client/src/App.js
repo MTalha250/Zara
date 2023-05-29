@@ -27,7 +27,7 @@ import { UserContext } from "./Context/UserContext";
 import { CartContext } from "./Context/CartContext";
 import AddProduct from "./SubComponents/Account/AddProduct";
 import UpdateProduct from "./SubComponents/Account/UpdateProduct";
-
+import jwt_decode from "jwt-decode";
 const App = () => {
   const [index, setIndex] = useState(0);
   const [data, setData] = useState([]);
@@ -37,7 +37,7 @@ const App = () => {
   const [cartData, setCartData] = useContext(CartContext);
 
   useEffect(() => {
-    async function getData() {
+    const getData = async () => {
       const response = await axios.get(
         process.env.REACT_APP_PATH + "product/products"
       );
@@ -46,9 +46,21 @@ const App = () => {
         process.env.REACT_APP_PATH + "collection/collection"
       );
       setCollection(cresponse.data);
-    }
+    };
     getData();
   }, []);
+
+  useEffect(() => {
+    if (userData) {
+      let decoded = jwt_decode(userData.token);
+      if (decoded.exp * 1000 < Date.now()) {
+        setUserData("");
+        setCartData([]);
+        localStorage.removeItem("User");
+        localStorage.removeItem("cart");
+      }
+    }
+  }, [userData]);
 
   const handleIndex = (data) => {
     setIndex(data);

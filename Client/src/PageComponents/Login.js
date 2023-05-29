@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
@@ -23,6 +23,11 @@ function Login() {
   const [password, setPassword] = useState(true);
   const [userData, setUserData] = useContext(UserContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { values, errors, handleChange, handleSubmit, handleBlur, touched } =
     useFormik({
       initialValues: initialValues,

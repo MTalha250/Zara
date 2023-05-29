@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Item from "../Item";
 
 const View = ({ data, filter }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="grid gap-x-2 md:gap-x-4 gap-y-10 grid-cols-2 md:grid-cols-4 pt-36 md:pt-48 md:px-16 lg:px-32">
       {data
