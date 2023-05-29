@@ -6,7 +6,8 @@ import { toast } from "react-hot-toast";
 const CartItem = (props) => {
   const [cartData, setCartData] = useContext(CartContext);
   const [data, setData] = useContext(DataContext);
-
+  const index = data.findIndex((d) => d._id === props.id);
+  const stock = data[index].stock;
   const handleDelete = (item) => {
     let itemId = cartData.findIndex((d) => d.item === item);
     cartData.splice(itemId, 1);
@@ -15,8 +16,7 @@ const CartItem = (props) => {
   };
 
   const handleIncrement = (item) => {
-    let index = data.findIndex((d) => d._id === props.id);
-    if (props.qty >= data[index].stock) {
+    if (props.qty >= stock) {
       toast("No more items in stock");
     } else {
       let itemId = cartData.findIndex((d) => d.item === item);
@@ -26,6 +26,7 @@ const CartItem = (props) => {
         tprice: props.tprice + props.price,
         qty: props.qty + 1,
       };
+
       setCartData([...cartData]);
       localStorage.setItem("cart", JSON.stringify([...cartData]));
     }
