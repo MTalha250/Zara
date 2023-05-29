@@ -128,11 +128,15 @@ function Nav(props) {
           />
           <div className="flex md:hidden">
             <Link to="/search">
-              <SearchIcon className="text-black mx-2.5 scale-125" />
+              <SearchIcon
+                className="text-black mx-2.5 scale-125"
+                onClick={() => setSidebar("0 invisible")}
+              />
             </Link>
             <Link
               to="/cart"
               className="text-black mx-2.5 relative border-x border-y border-black w-5 h-6 flex justify-center items-center"
+              onClick={() => setSidebar("0 invisible")}
             >
               0
               <span className="absolute w-1/2 h-full border-t-2 border-black rounded-full -top-1"></span>
