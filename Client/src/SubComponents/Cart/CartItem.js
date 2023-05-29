@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../Context/CartContext";
-
+import { DataContext } from "../../Context/DataContext";
+import { toast } from "react-hot-toast";
 const CartItem = (props) => {
   const [cartData, setCartData] = useContext(CartContext);
+  const [data, setData] = useContext(DataContext);
 
   const handleDelete = (item) => {
     let itemId = cartData.findIndex((d) => d.item === item);
@@ -13,15 +15,20 @@ const CartItem = (props) => {
   };
 
   const handleIncrement = (item) => {
-    let itemId = cartData.findIndex((d) => d.item === item);
-    console.log();
-    cartData[itemId] = {
-      ...cartData[itemId],
-      tprice: props.tprice + props.price,
-      qty: props.qty + 1,
-    };
-    setCartData([...cartData]);
-    localStorage.setItem("cart", JSON.stringify([...cartData]));
+    let index = data.findIndex((d) => d._id === props.id);
+    if (props.qty >= data[index].stock) {
+      toast("No more items in stock");
+    } else {
+      let itemId = cartData.findIndex((d) => d.item === item);
+      console.log();
+      cartData[itemId] = {
+        ...cartData[itemId],
+        tprice: props.tprice + props.price,
+        qty: props.qty + 1,
+      };
+      setCartData([...cartData]);
+      localStorage.setItem("cart", JSON.stringify([...cartData]));
+    }
   };
   const handleDecrement = (item) => {
     if (props.qty > 1) {
