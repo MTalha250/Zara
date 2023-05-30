@@ -7,6 +7,7 @@ const Users = () => {
   const [userData, setUserData] = useContext(UserContext);
   const [users, setUsers] = useState([]);
   useEffect(() => {
+    window.scrollTo(0, 0);
     async function getData() {
       const users = await axios.get(process.env.REACT_APP_PATH + "user/users");
       setUsers(users.data);

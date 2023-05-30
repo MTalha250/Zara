@@ -4,8 +4,10 @@ import { toast } from "react-hot-toast";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+
   useEffect(() => {
     async function getData() {
+      window.scrollTo(0, 0);
       const orders = await axios.get(
         process.env.REACT_APP_PATH + "order/orders"
       );

@@ -1,9 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DItem from "./DItem";
 import { DataContext } from "../../Context/DataContext";
 const Products = () => {
   const [filter, setFilter] = useState("women");
   const [data, setData] = useContext(DataContext);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="p-6 lg:p-10">
       <h1 className="text-center text-3xl font-bold">All Products</h1>
