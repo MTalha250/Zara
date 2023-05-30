@@ -22,26 +22,34 @@ const DItem = (props) => {
     <div className="text-[10px] sm:text-xs font-light">
       <Link to={`/product/${props.id}`} className="text-black">
         <div className="w-full flex overflow-scroll snap-x snap-mandatory scrollbar-none">
-          <img
-            src={props.img}
-            alt=""
-            className="w-full snap-start snap-always"
-          />
-          <img
-            src={props.img2}
-            alt=""
-            className="w-full snap-start snap-always"
-          />
-          <img
-            src={props.img3}
-            alt=""
-            className="w-full snap-start snap-always"
-          />
-          <img
-            src={props.img4}
-            alt=""
-            className="w-full snap-start snap-always"
-          />
+          {props.img && (
+            <img
+              src={props.img}
+              alt=""
+              className="w-full snap-start snap-always"
+            />
+          )}
+          {props.img2 && (
+            <img
+              src={props.img2}
+              alt=""
+              className="w-full snap-start snap-always"
+            />
+          )}
+          {props.img3 && (
+            <img
+              src={props.img3}
+              alt=""
+              className="w-full snap-start snap-always"
+            />
+          )}
+          {props.img4 && (
+            <img
+              src={props.img4}
+              alt=""
+              className="w-full snap-start snap-always"
+            />
+          )}
         </div>
         <p className="my-1.5 truncate">{props.name}</p>
       </Link>

@@ -48,7 +48,7 @@ const CartItem = (props) => {
     <div className="text-[10px] md:text-xs font-light">
       <Link to={`/product/${props.id}`} className="text-black">
         <div>
-          <img src={props.img} alt="" className="w-full" />
+          {props.img && <img src={props.img} alt="" className="w-full" />}
         </div>
         <p className="my-1.5">{props.name}</p>
       </Link>
