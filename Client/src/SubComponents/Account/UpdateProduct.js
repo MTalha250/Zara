@@ -16,7 +16,6 @@ const UpdateProduct = () => {
   const item = allData?.filter((d) => {
     return d._id === params.id;
   });
-  console.log(item);
   const [data, setData] = useState({
     imgs: [],
     name: item[0].name,
@@ -57,15 +56,15 @@ const UpdateProduct = () => {
     formData.append("description", data.description);
     formData.append("category", data.category);
     const response = await axios.put(
-      process.env.REACT_APP_PATH + `product/update/${item[0]._id}`,
+      process.env.REACT_APP_PATH + `product/update/${params.id}`,
       formData
     );
-    const index = allData.findIndex((d) => d._id === item[0]._id);
-    allData[index] = data;
-    setAllData([...allData]);
     toast(response.data.message);
+    const getData = await axios.get(
+      process.env.REACT_APP_PATH + "product/products"
+    );
+    setAllData(getData.data);
     navigate("../products");
-    window.location.reload();
   };
 
   return (

@@ -47,7 +47,7 @@ module.exports = {
         res.send({ message: "Product Updated" });
       })
       .catch((err) => {
-        res.send("Something went wrong!!!!" + err);
+        res.send({ message: "Something went wrong!!!!" + err });
       });
   },
 };

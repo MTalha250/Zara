@@ -54,8 +54,11 @@ const AddProduct = () => {
       process.env.REACT_APP_PATH + "product/addProduct",
       formData
     );
-    setAllData([...allData, data]);
     toast(response.data.message);
+    const getData = await axios.get(
+      process.env.REACT_APP_PATH + "product/products"
+    );
+    setAllData(getData.data);
     setData({
       imgs: [],
       name: "",
@@ -64,7 +67,6 @@ const AddProduct = () => {
       category: "",
       stock: "",
     });
-    window.location.reload();
   };
 
   return (

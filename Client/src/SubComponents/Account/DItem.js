@@ -11,10 +11,11 @@ const DItem = (props) => {
     const response = await axios.delete(
       process.env.REACT_APP_PATH + `product/delete/${id}`
     );
-    const index = data.findIndex((d) => d._id === id);
-    data.splice(index, 1);
-    setData([...data]);
     toast(response.data.message);
+    const getData = await axios.get(
+      process.env.REACT_APP_PATH + "product/products"
+    );
+    setData(getData.data);
   };
 
   return (
