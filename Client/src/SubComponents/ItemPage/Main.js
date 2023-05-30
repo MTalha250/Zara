@@ -37,7 +37,6 @@ function Main({ data }) {
           const index = cartData.findIndex(
             (item) => item.item === size + data._id
           );
-          console.log(index);
           cartData[index] = {
             ...cartData[index],
             tprice: cartData[index].tprice + data.price,
