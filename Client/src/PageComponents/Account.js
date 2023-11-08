@@ -35,7 +35,7 @@ const Account = () => {
           ) : null}
         </div>
       </div>
-      <div className="z-10 fixed top-0 h-32 w-full bg-white"></div>
+      <div className="z-10 fixed top-0 h-32 w-full bg-whit"></div>
       <div className="pt-32 md:pt-40">
         <Outlet />
       </div>
